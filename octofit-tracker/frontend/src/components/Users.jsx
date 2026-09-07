@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
-import { getApiBaseUrl } from '../utils/api.js';
+
+const apiBaseUrl = import.meta.env.VITE_CODESPACE_NAME
+  ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api`
+  : 'http://localhost:8000/api';
 
 function Users() {
   const [items, setItems] = useState([]);
@@ -11,7 +14,7 @@ function Users() {
 
     async function loadUsers() {
       try {
-        const response = await fetch(`${getApiBaseUrl()}/users/`, {
+        const response = await fetch(`${apiBaseUrl}/users/`, {
           signal: controller.signal,
         });
 
