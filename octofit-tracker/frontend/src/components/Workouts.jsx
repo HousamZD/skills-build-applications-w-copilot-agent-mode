@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 
-const apiBaseUrl = import.meta.env.VITE_CODESPACE_NAME
-  ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api`
-  : 'http://localhost:8000/api';
+const apiUrl = import.meta.env.VITE_CODESPACE_NAME
+  ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/workouts/`
+  : 'http://localhost:8000/api/workouts/';
 
 function Workouts() {
   const [items, setItems] = useState([]);
@@ -14,7 +14,7 @@ function Workouts() {
 
     async function loadWorkouts() {
       try {
-        const response = await fetch(`${apiBaseUrl}/workouts/`, {
+        const response = await fetch(apiUrl, {
           signal: controller.signal,
         });
 
